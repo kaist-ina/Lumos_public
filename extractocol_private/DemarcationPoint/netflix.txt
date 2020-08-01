@@ -1,0 +1,2 @@
+%<com.netflix.mediaclient.service.logging.customerevents.legacy.MdxLoggingManager: void sendEvent(com.netflix.mediaclient.service.logging.customerevents.legacy.MdxCustomerEvent)> -> _SOURCE_
+<com.netflix.mediaclient.service.logging.customerevents.legacy.MdxCustomerEvent: void <init>(java.lang.String,com.netflix.mediaclient.webapi.AuthorizationCredentials,java.lang.String)> -> _SOURCE_

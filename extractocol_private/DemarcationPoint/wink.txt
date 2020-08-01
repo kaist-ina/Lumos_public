@@ -1,0 +1,1 @@
+<com.loopj.android.http.a: com.loopj.android.http.p a(cz.msebera.android.httpclient.impl.client.j,cz.msebera.android.httpclient.f.e,cz.msebera.android.httpclient.client.c.k,java.lang.String,com.loopj.android.http.q,android.content.Context)> -> _SOURCE_

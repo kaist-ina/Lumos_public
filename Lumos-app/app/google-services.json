@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "886164644376",
+    "firebase_url": "https://lumost-5131f.firebaseio.com",
+    "project_id": "lumost-5131f",
+    "storage_bucket": "lumost-5131f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:886164644376:android:3cfe2a92013c38da",
+        "android_client_info": {
+          "package_name": "kaist.ina.lumos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "886164644376-2gad3j07fifcfjn1287je6gh26ehqj1c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtTI84GfBWr9Dspe-47sbVpKmwmps2KIA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,3 @@
+<%com.example.administrator.test.MainActivity: void execute(com.example.administrator.test.HttpRequestParams)> -> _SOURCE_
+
+<extractocol.wish_transition1.MainActivity: void sink(java.lang.String,extractocol.wish_transition1.fruitset)> -> _SOURCE_

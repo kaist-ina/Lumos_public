@@ -1,0 +1,6 @@
+{
+  "pair":
+  [
+    {"Human_readable_id":"device_tile_actuator", "UI":["0x7f1105ff"],"Sig":["POST .*/elder/.*/api/devices/.*/commands/action/.*"]}
+  ]
+}

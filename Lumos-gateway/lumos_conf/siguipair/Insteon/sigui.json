@@ -1,0 +1,7 @@
+{
+  "pair":
+  [
+    {"Human_readable_id":"btnOn", "UI":["0x7f0d0068"],"Sig":["POST https://pubsub.pubnub.com/publish/.*", "BODY cmd2=FF cmd1=11"]},
+    {"Human_readable_id":"btnOff", "UI":["0x7f0d0068"],"Sig":["POST https://pubsub.pubnub.com/publish/.*", "BODY cmd2=00 cmd1=13"]}
+  ]
+}

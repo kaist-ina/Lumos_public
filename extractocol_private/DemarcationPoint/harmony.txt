@@ -1,0 +1,3 @@
+<com.logitech.harmonyhub.sdk.core.hub.BaseHub: void processMetaData(org.json.JSONObject)> -> _SOURCE_
+<com.logitech.harmonyhub.sdk.core.transport.ConnectionHandler: void sendRequest(com.logitech.harmonyhub.sdk.IRequestCallback,com.logitech.harmonyhub.sdk.Request,com.logitech.harmonyhub.sdk.RequestConfig)> -> _SOURCE_
+<com.logitech.harmonyhub.sdk.core.hub.BaseHub: com.logitech.harmonyhub.sdk.HarmonyMessage request(com.logitech.harmonyhub.sdk.Request,com.logitech.harmonyhub.sdk.RequestConfig)> -> _SOURCE_

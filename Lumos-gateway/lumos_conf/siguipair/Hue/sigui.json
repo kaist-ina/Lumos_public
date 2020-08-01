@@ -1,0 +1,7 @@
+{
+  "pair":
+  [
+    {"Human_readable_id":"alloffbutton", "UI":["0x1234567"],"Sig":["POST http://.*/api/.*/lights/.*/state", "BODY bri=.*"]},
+    {"Human_readable_id": "brightness_slide", "UI":["0x7f03001f"],"Sig":["POST http://.*/api/.*/lights/.*/state"]}
+  ]
+}

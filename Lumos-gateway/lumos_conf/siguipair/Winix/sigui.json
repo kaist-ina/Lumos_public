@@ -1,0 +1,7 @@
+{
+  "pair":
+  [
+    {"Human_readable_id":"control_btn_power_on_text", "UI":["0x7f090035"],"Sig":["POST .*/homedevice/control", "BODY ServierUid=.* ControlData=.* ModelName=.* DeviceID=.* body=.* Flag=.* LangCode=.* ReqTime=.*"]},
+    {"Human_readable_id":"control_btn_power_off_text", "UI":["0x7f090034"],"Sig":["POST .*/homedevice/control", "BODY ServierUid=.* ControlData=.* ModelName=.* DeviceID=.* body=.* Flag=.* LangCode=.* ReqTime=.*"]}
+  ]
+}

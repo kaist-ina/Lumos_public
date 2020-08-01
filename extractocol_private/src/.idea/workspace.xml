@@ -1,0 +1,1278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/extractocol/src/extractocol/frontend/basic/MyCallGraphBuilder.java" line="251" mnemonic="2" />
+    <bookmark url="file://$PROJECT_DIR$/extractocol/src/extractocol/tester/Backend.java" line="142" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/extractocol/src/extractocol/tester/Backend.java" line="373" mnemonic="3" />
+    <bookmark url="file://$PROJECT_DIR$/extractocol/src/extractocol/common/UIfinder/EHSigManager.java" line="42" mnemonic="4" />
+    <bookmark url="file://$PROJECT_DIR$/extractocol/src/extractocol/frontend/MyBackwardInfoflow.java" line="398" mnemonic="5" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="73dc2379-2211-4ba9-a83a-3b9418cf2717" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/src$full_Extractocol.coverage" NAME="full_Extractocol Coverage Results" MODIFIED="1532167713828" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DevPartner.ProjectWorkspace">
+    <option name="runtimeAnalysisType" value="-1" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="src" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/tester/Backend.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="71" column="12" lean-forward="true" selection-start-line="71" selection-start-column="12" selection-end-line="71" selection-end-column="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/common/UIfinder/EHSigManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/common/outputs/BackendOutput.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/tester/Extractocol.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/SignatureBuilder_Request.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="7992">
+              <caret line="506" column="56" selection-start-line="506" selection-start-column="56" selection-end-line="506" selection-end-column="56" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/Constants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="864">
+              <caret line="87" column="49" selection-start-line="87" selection-start-column="49" selection-end-line="87" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/UrlBuilder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="792">
+              <caret line="73" column="43" selection-start-line="73" selection-start-column="43" selection-end-line="73" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>$1</find>
+      <find>com.netflix.mediaclient.util.MdxUtils$1</find>
+      <find>showdevicecontrolmsg</find>
+      <find>results:</find>
+      <find>virtualinvoke $r12.&lt;android.widget.Button: void setOnTouchListener(android.view.View$OnTouchListener)&gt;($r13)</find>
+      <find>setonClickListener</find>
+      <find>harmony</find>
+      <find>lock</find>
+      <find>onlock</find>
+      <find>actual</find>
+      <find>onactuator</find>
+      <find>remote</find>
+      <find>actu</find>
+      <find>api/devices/{deviceID}/commands/actions[</find>
+      <find>{locationId}/api/devices/{deviceId}/commands/action/{tileAction}</find>
+      <find>api/devices/{deviceId}/commands/action/{tileAction}</find>
+      <find>onCreateView</find>
+      <find>findviewb</find>
+      <find>Heap object - res id</find>
+      <find>findview</find>
+      <find>-UI</find>
+      <find>&lt;com.quirky.android.wink.core.devices.siren.a.a.e: void q()&gt;</find>
+      <find>this EP</find>
+      <find>session</find>
+      <find>tokenArgumen</find>
+      <find>token</find>
+      <find>client_secret</find>
+      <find>oauth</find>
+      <find>auth/oauth</find>
+      <find>refresh_token</find>
+    </findStrings>
+    <dirStrings>
+      <dir>D:\newsoot_extractocol\extractocol_private\src\extractocol\src\extractocol</dir>
+      <dir>D:\newsoot_extractocol\extractocol_private\src\extractocol\src\extractocol\backend\request\semantic\url\models\normalModels</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/normalModels/tojson.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/normalModels/a.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/normalModels/build.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/common/valueEntry/ValueEntryTable.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/normalModels/buildUpon.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/normalModels/appendPath.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/normalModels/appendEncodedPath.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/normalModels/setdata.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/normalModels/init.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/normalModels/setargument.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/normalModels/getaction.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/normalModels/postcontrolaction.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/tester/RetroTranmapParser.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/IoT/ExtendedExtractocol.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/common/outputs/helper/BackendOutputHelper.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/frontend/UIFinderTest.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/tester/FrontendForUIFinding.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/frontend/UIFinderSetupApplication.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/backend/request/helper/JimpleLoader.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/frontend/TransitionStrategy/ToBackwardTransition.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/soot/jimple/infoflow/problems/rules/PropagationRuleManager.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/frontend/problem/MyInfoflowProblem.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/common/UIfinder/EHlist.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/frontend/UIFinderForwardInfoflow.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/frontend/solver/MyIFDSSolver.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/common/UIfinder/BKEntry.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/common/UIfinder/Sig_EH_Resid_pair.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/common/UIfinder/ButterKnifeParser.java" />
+        <option value="$PROJECT_DIR$/soot/src/soot/CallbackCandidateFinder.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/common/UIfinder/ListenerEntry.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/frontend/basic/MyCallGraphBuilder.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/common/UIfinder/EPSeedPiar.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/common/UIfinder/EPSeedPair.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/frontend/MyTest.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/frontend/MyBackwardInfoflow.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/common/outputs/BackendOutput.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/tester/Frontend.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/backend/request/helper/CFGSerializer.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/frontend/output/TaintResultContainer.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/normalModels/findViewById.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/backend/request/unitHandle/InvokeStmtHandler.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/common/valueEntry/helper/General.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/common/valueEntry/unitHandle/Unit_AssignStmt.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/common/UIfinder/EHSigPair.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/tester/Extractocol.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/Constants.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/UrlBuilder.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/backend/request/SignatureBuilder_Request.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/normalModels/othercases.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/common/UIfinder/EHSigManager.java" />
+        <option value="$PROJECT_DIR$/extractocol/src/extractocol/tester/Backend.java" />
+      </list>
+    </option>
+  </component>
+  <component name="InvalidFacetManager">
+    <ignored-facets>
+      <facet id="heros/invalid/OSGi" />
+      <facet id="soot-infoflow/invalid/OSGi" />
+    </ignored-facets>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1096" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <flattenPackages ProjectPane="true" />
+      <autoscrollToSource PackagesPane="false" />
+      <autoscrollFromSource PackagesPane="true" ProjectPane="true" />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="src" type="b2602c69:ProjectViewProjectNode" />
+              <item name="extractocol" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="src" type="b2602c69:ProjectViewProjectNode" />
+              <item name="extractocol" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SearchEverywhereHistoryKey" value="injectContext&#9;PSI&#9;JAVA://soot.jimple.infoflow.solver.IInfoflowSolver#injectContext&#10;handleinit&#9;PSI&#9;JAVA://soot.jimple.toolkits.callgraph.OnFlyCallGraphBuilder#handleInit" />
+    <property name="TODO_SCOPE" value="Module 'extractocol'" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="JAVA" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/soot/src/soot" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.20324005" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="extractocol.backend.request.semantic.url.models.normalModels" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="extractocol.frontend" />
+      <recent name="soot.jimple.infoflow.aliasing" />
+      <recent name="extractocol.frontend.problem" />
+      <recent name="extractocol.frontend.callgraph" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="extractocol.common.UIfinder" />
+      <recent name="extractocol.IoT" />
+      <recent name="extractocol.backend.request.semantic.url.models.normalModels" />
+      <recent name="extractocol.backend.request.semantic.url" />
+      <recent name="extractocol.frontend.output.basic" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.RetrofitParser">
+    <configuration default="true" type="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Backend" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="MAIN_CLASS_NAME" value="extractocol.tester.Backend" />
+      <module name="extractocol" />
+      <option name="PROGRAM_PARAMETERS" value="--app walmart" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/extractocol" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="extractocol.tester.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Frontend" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8.0_201" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <envs>
+        <env name="Xms" value="8024" />
+        <env name="Xmx" value="8024" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="extractocol.tester.Frontend" />
+      <module name="extractocol" />
+      <option name="PROGRAM_PARAMETERS" value="pinterest --maxms 5" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/extractocol" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="extractocol.tester.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Heapfinder" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8.0_201" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="extractocol.tester.HeapHandling" />
+      <module name="extractocol" />
+      <option name="PROGRAM_PARAMETERS" value="--app pinterest" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/extractocol" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ManifestParser" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ExecutionGenerator.ManifestParser" />
+      <module name="extractocol" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ExecutionGenerator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ObfsSolver" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="ObfuscationSolver.SolverCaller" />
+      <module name="extractocol" />
+      <option name="PASS_PARENT_ENVS" value="false" />
+      <option name="PROGRAM_PARAMETERS" value="flipagram" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/extractocol" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="QueryConverter" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="C:/Program Files/Java/jre1.8.0_151" />
+      <option name="MAIN_CLASS_NAME" value="QueryConvertor.QueryConverter" />
+      <module name="extractocol" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RetrofitParser" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="extractocol.tester.RetroTranmapParser" />
+      <module name="extractocol" />
+      <option name="PROGRAM_PARAMETERS" value="ST" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/extractocol" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="full_Extractocol" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8.0_201" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="extractocol.tester.Extractocol" />
+      <module name="extractocol" />
+      <option name="PROGRAM_PARAMETERS" value="ST --maxms 2 --maxdepth 3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/extractocol" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <module name="" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Backend" />
+      <item itemvalue="Application.Frontend" />
+      <item itemvalue="Application.Heapfinder" />
+      <item itemvalue="Application.ManifestParser" />
+      <item itemvalue="Application.ObfsSolver" />
+      <item itemvalue="Application.QueryConverter" />
+      <item itemvalue="Application.RetrofitParser" />
+      <item itemvalue="Application.full_Extractocol" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="73dc2379-2211-4ba9-a83a-3b9418cf2717" name="Default" comment="" />
+      <created>1488273381966</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1488273381966</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView" selected-index="2">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.44428873" visible="true" weight="0.16577825" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="UI Designer" order="3" />
+      <window_info id="Favorites" order="4" sideWeight="0.55571127" side_tool="true" weight="0.2875" />
+      <window_info id="Designer" order="5" />
+      <window_info id="Image Layers" order="6" />
+      <window_info anchor="bottom" id="Messages" order="0" sideWeight="0.48773986" weight="0.3165236" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3408203" />
+      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5170576" side_tool="true" weight="0.2585837" />
+      <window_info anchor="bottom" x="-1849" y="631" width="1701" height="571" id="Debug" order="3" sideWeight="0.48667377" weight="0.40238613" />
+      <window_info anchor="bottom" x="2085" y="295" width="1914" height="345" id="Run" order="4" sideWeight="0.48294243" weight="0.2585837" />
+      <window_info anchor="bottom" id="Terminal" order="5" sideWeight="0.49733475" weight="0.32618025" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32858595" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3290461" />
+      <window_info anchor="bottom" id="Message" order="8" />
+      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
+      <window_info anchor="bottom" id="Analyze Dataflow to" order="11" weight="0.3290461" />
+      <window_info anchor="bottom" id="Dependency Viewer" order="12" weight="0.32878152" />
+      <window_info anchor="bottom" id="Analyze Dataflow from" order="13" weight="0.3290461" />
+      <window_info anchor="right" id="Maven Projects" order="0" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" id="Dynamic Properties" order="2" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Commander" order="7" weight="0.4" />
+      <window_info anchor="right" x="89" y="89" width="3662" height="1936" id="Documentation" order="8" type="FLOATING" />
+      <window_info anchor="right" id="Code Graph" order="9" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="10" weight="0.25" />
+      <window_info anchor="right" id="Coverage" order="11" side_tool="true" weight="0.3296875" />
+      <window_info anchor="right" id="Maven" order="12" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.44428873" visible="true" weight="0.1609375" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="UI Designer" order="3" />
+      <window_info id="Favorites" order="4" sideWeight="0.55571127" side_tool="true" weight="0.2875" />
+      <window_info id="Designer" order="5" />
+      <window_info id="Image Layers" order="6" />
+      <window_info anchor="bottom" id="Messages" order="0" sideWeight="0.48854166" weight="0.3172269" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3408203" />
+      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.51145834" side_tool="true" weight="0.32037815" />
+      <window_info anchor="bottom" x="-1849" y="631" width="1701" height="571" id="Debug" order="3" sideWeight="0.48667377" weight="0.4033203" />
+      <window_info anchor="bottom" x="2085" y="295" width="1914" height="345" id="Run" order="4" sideWeight="0.48333332" visible="true" weight="0.45378152" />
+      <window_info anchor="bottom" id="Terminal" order="5" sideWeight="0.49791667" weight="0.32690248" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32858595" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3290461" />
+      <window_info anchor="bottom" id="Message" order="8" />
+      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
+      <window_info anchor="bottom" id="Analyze Dataflow to" order="11" weight="0.3290461" />
+      <window_info anchor="bottom" id="Dependency Viewer" order="12" weight="0.32878152" />
+      <window_info anchor="bottom" id="Analyze Dataflow from" order="13" weight="0.3290461" />
+      <window_info anchor="right" id="Maven Projects" order="0" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" id="Dynamic Properties" order="2" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Commander" order="7" weight="0.4" />
+      <window_info anchor="right" x="89" y="89" width="3662" height="1936" id="Documentation" order="8" type="FLOATING" />
+      <window_info anchor="right" id="Code Graph" order="9" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="10" weight="0.25" />
+      <window_info anchor="right" id="Coverage" order="11" side_tool="true" weight="0.3296875" />
+    </layout-to-restore>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/.." />
+      <path value="$PROJECT_DIR$/soot" />
+      <path value="$PROJECT_DIR$/heros" />
+      <path value="$PROJECT_DIR$/jasmin" />
+      <path value="$PROJECT_DIR$/soot-infoflow" />
+      <path value="$PROJECT_DIR$/soot-infoflow-android" />
+    </ignored-roots>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/soot/src/soot/Scene.java</url>
+          <line>280</line>
+          <properties />
+          <option name="timeStamp" value="283" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/soot/src/soot/SourceLocator.java</url>
+          <line>529</line>
+          <properties />
+          <option name="timeStamp" value="284" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/common/valueEntry/PartofUrlStringTable.java</url>
+          <line>33</line>
+          <properties />
+          <option name="timeStamp" value="331" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/common/valueEntry/PartofUrlStringTable.java</url>
+          <line>38</line>
+          <properties />
+          <option name="timeStamp" value="332" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <condition expression="/*callSite.toString().contains(&quot;&lt;com.android.volley.toolbox.PinterestJsonObjectRequest: void &lt;init&gt;(java.lang.String,com.android.volley.Response$Listener,com.android.volley.Response$ErrorListener,com.android.volley.Response$HeaderListener)&gt;&quot;) &amp;&amp; interproceduralCFG().getMethodOf(callSite).getSignature().contains(&quot;com.pinterest.api.e$3&quot;)*/&#10;&#10;callSite.toString().contains(&quot;&lt;com.android.volley.Request: int findDefaultTrafficStatsTag(java.lang.String)&gt;&quot;) &amp;&amp; interproceduralCFG().getMethodOf(callSite).getSignature().contains(&quot;volley.Request&quot;)" language="JAVA" mode="CODE_FRAGMENT" />
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/frontend/problem/MyBackwardsInfoflowProblem.java</url>
+          <line>805</line>
+          <properties />
+          <option name="timeStamp" value="354" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <condition expression="n.toString().contains(&quot;$r0.&lt;com.pinterest.api.e$3: java.util.Map c&gt; = $r6&quot;)" language="JAVA" />
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/frontend/solver/MyIFDSSolver.java</url>
+          <line>726</line>
+          <properties />
+          <option name="timeStamp" value="358" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <condition expression="edge.getTarget().toString().contains(&quot;virtualinvoke $r1.&lt;android.net.Uri: java.lang.String getHost()&gt;&quot;)" language="JAVA" />
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/frontend/solver/MyIFDSSolver.java</url>
+          <line>973</line>
+          <properties />
+          <option name="timeStamp" value="360" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/frontend/solver/MyIFDSSolver.java</url>
+          <line>330</line>
+          <properties />
+          <option name="timeStamp" value="371" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <condition expression="as.toString().contains(&quot;$r1 = staticinvoke &lt;com.pinterest.api.e: com.pinterest.api.h a(com.pinterest.api.h,java.lang.String,java.lang.String)&gt;&quot;)" language="JAVA" mode="CODE_FRAGMENT" />
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/unitHandle/AssignStmtHandler.java</url>
+          <line>568</line>
+          <properties />
+          <option name="timeStamp" value="379" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/staticModels/format.java</url>
+          <line>125</line>
+          <properties />
+          <option name="timeStamp" value="392" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/common/outputs/backendOutputHelper/RequestInfoEntry.java</url>
+          <line>112</line>
+          <properties />
+          <option name="timeStamp" value="394" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <condition expression="as.toString().contains(&quot;&lt;com.pinterest.api.f: void &lt;init&gt;(com.pinterest.e.c.d)&gt;&quot;)" language="JAVA" mode="CODE_FRAGMENT" />
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/backend/response/unitHandle/Unit_AssignStmt.java</url>
+          <line>49</line>
+          <properties />
+          <option name="timeStamp" value="435" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/normalModels/ajax.java</url>
+          <line>98</line>
+          <properties />
+          <option name="timeStamp" value="441" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/normalModels/ajax.java</url>
+          <line>20</line>
+          <properties />
+          <option name="timeStamp" value="442" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/common/outputs/BackendOutput.java</url>
+          <line>39</line>
+          <properties />
+          <option name="timeStamp" value="443" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/ObfuscationSolver/MappingTable.java</url>
+          <line>101</line>
+          <properties />
+          <option name="timeStamp" value="460" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/ObfuscationSolver/SolverCaller.java</url>
+          <line>28</line>
+          <properties />
+          <option name="timeStamp" value="461" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/ObfuscationSolver/MappingTable.java</url>
+          <line>24</line>
+          <properties />
+          <option name="timeStamp" value="470" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/common/retrofit/utils/ResponseFileAnalyzer.java</url>
+          <line>60</line>
+          <properties />
+          <option name="timeStamp" value="559" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/common/retrofit/utils/FileAnalyzer.java</url>
+          <line>166</line>
+          <properties />
+          <option name="timeStamp" value="564" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/ExecutionGenerator/ManifestParser.java</url>
+          <line>22</line>
+          <properties />
+          <option name="timeStamp" value="542" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/normalModels/parse.java</url>
+          <line>20</line>
+          <properties />
+          <option name="timeStamp" value="590" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/common/outputs/helper/BackendOutputHelper.java</url>
+          <line>41</line>
+          <properties />
+          <option name="timeStamp" value="627" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <condition expression="ut.toString().contains(&quot;playback&quot;)" language="JAVA" />
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/unitHandle/AbstractUnitHandleDecorator.java</url>
+          <line>21</line>
+          <properties />
+          <option name="timeStamp" value="651" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/tester/Backend.java</url>
+          <line>221</line>
+          <properties />
+          <option name="timeStamp" value="693" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/tester/RetroTranmapParser.java</url>
+          <line>12</line>
+          <properties />
+          <option name="timeStamp" value="709" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/common/retrofit/struct/Transaction.java</url>
+          <line>110</line>
+          <properties />
+          <option name="timeStamp" value="710" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/frontend/MyBackwardInfoflow.java</url>
+          <line>1123</line>
+          <properties />
+          <option name="timeStamp" value="742" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/frontend/problem/MyInfoflowProblem.java</url>
+          <line>126</line>
+          <properties />
+          <option name="timeStamp" value="760" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/frontend/problem/MyInfoflowProblem.java</url>
+          <line>460</line>
+          <properties />
+          <option name="timeStamp" value="761" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/frontend/problem/MyInfoflowProblem.java</url>
+          <line>379</line>
+          <properties />
+          <option name="timeStamp" value="762" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/soot/jimple/infoflow/problems/rules/PropagationRuleManager.java</url>
+          <line>87</line>
+          <properties />
+          <option name="timeStamp" value="764" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/frontend/problem/MyInfoflowProblem.java</url>
+          <line>398</line>
+          <properties />
+          <option name="timeStamp" value="766" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/frontend/problem/MyInfoflowProblem.java</url>
+          <line>394</line>
+          <properties />
+          <option name="timeStamp" value="767" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/frontend/problem/MyInfoflowProblem.java</url>
+          <line>428</line>
+          <properties />
+          <option name="timeStamp" value="772" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/frontend/problem/MyInfoflowProblem.java</url>
+          <line>451</line>
+          <properties />
+          <option name="timeStamp" value="773" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/tester/Frontend.java</url>
+          <line>302</line>
+          <properties />
+          <option name="timeStamp" value="838" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/normalModels/othercases.java</url>
+          <line>148</line>
+          <properties />
+          <option name="timeStamp" value="864" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/normalModels/othercases.java</url>
+          <line>122</line>
+          <properties />
+          <option name="timeStamp" value="865" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/extractocol/src/extractocol/tester/Backend.java</url>
+          <line>94</line>
+          <properties />
+          <option name="timeStamp" value="866" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="EHSigManager.results" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/common/UIfinder/EHlist.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/soot/src/soot/util/NumberedString.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/soot/src/soot/jimple/toolkits/callgraph/CallGraphBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="39" column="19" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/soot/src/soot/jimple/toolkits/callgraph/OnFlyCallGraphBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="734">
+          <caret line="1569" column="77" lean-forward="true" selection-start-line="1569" selection-start-column="77" selection-end-line="1569" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/frontend/UIFinderSetupApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="811" column="25" selection-start-line="811" selection-start-column="25" selection-end-line="811" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/soot/src/soot/jimple/toolkits/typing/ConstraintCollectorBV.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2140">
+          <caret line="120" column="26" selection-start-line="120" selection-start-column="26" selection-end-line="120" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/soot/src/soot/Scene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19764">
+          <caret line="814" selection-start-line="814" selection-end-line="814" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/tester/FrontendForUIFinding.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="256" column="45" selection-start-line="256" selection-start-column="45" selection-end-line="256" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/soot/src/soot/jimple/internal/JAssignStmt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="120" selection-start-line="120" selection-end-line="120" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/soot/src/soot/jimple/internal/AbstractInvokeExpr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="73" selection-start-line="73" selection-end-line="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/soot/src/soot/CallbackCandidateFinder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6678">
+          <caret line="386" column="48" selection-start-line="386" selection-start-column="26" selection-end-line="386" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/common/UIfinder/ListenerEntry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/frontend/basic/MyCallGraphBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8586">
+          <caret line="489" column="37" selection-start-line="489" selection-start-column="37" selection-end-line="489" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/frontend/output/basic/DPContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="11" column="18" lean-forward="true" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/soot/src/soot/SootClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6030">
+          <caret line="383" column="7" selection-start-line="383" selection-start-column="7" selection-end-line="383" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/frontend/MySetupApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20439">
+          <caret line="849" selection-start-line="849" selection-end-line="849" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/frontend/output/InitialTaintResultContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="212" selection-start-line="212" selection-end-line="212" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/frontend/MyTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="160" column="23" selection-start-line="160" selection-start-column="23" selection-end-line="160" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/frontend/output/TaintResultContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="149" column="8" lean-forward="true" selection-start-line="149" selection-start-column="8" selection-end-line="149" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/helper/CFGSerializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="22" column="52" selection-start-line="22" selection-start-column="52" selection-end-line="22" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/normalModels/add.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="24" column="42" lean-forward="true" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/SemanticParameterBucket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="28" column="29" lean-forward="true" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/normalModels/execute.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/backend/common/ReqSigBuilding.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/backend/common/BackendThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1998">
+          <caret line="127" column="31" selection-start-line="127" selection-start-column="31" selection-end-line="127" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/tester/Frontend.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1368">
+          <caret line="102" column="30" selection-start-line="102" selection-start-column="30" selection-end-line="102" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/unitHandle/ExtractResponseHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/soot/src/soot/SootMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="654" selection-start-line="654" selection-end-line="654" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/normalModels/findViewById.java" />
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/common/helper/InvokeHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9">
+          <caret line="47" column="34" selection-start-line="47" selection-start-column="34" selection-end-line="47" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/unitHandle/HeapTrackDecorator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/unitHandle/AbstractUnitHandleDecorator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/unitHandle/AssignStmtHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="527" column="22" selection-start-line="527" selection-start-column="22" selection-end-line="527" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/common/valueEntry/ValueEntryTracking.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="294" column="87" lean-forward="true" selection-start-line="294" selection-start-column="87" selection-end-line="294" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/common/valueEntry/helper/General.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="36" column="61" selection-start-line="36" selection-start-column="61" selection-end-line="36" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/basics/ParameterBucket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="44" column="21" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/common/valueEntry/unitHandle/Unit_AssignStmt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/common/UIfinder/EPSeedPair.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/common/UIfinder/EHSigPair.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="32" column="53" lean-forward="true" selection-start-line="32" selection-start-column="53" selection-end-line="32" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/common/valueEntry/ValueEntryTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="199" column="73" selection-start-line="199" selection-start-column="62" selection-end-line="199" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/unitHandle/InvokeStmtHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/soot/src/soot/jimple/internal/AbstractDefinitionStmt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="52" selection-start-line="52" selection-end-line="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/models/normalModels/othercases.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="51" column="10" selection-start-line="51" selection-start-column="10" selection-end-line="51" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/frontend/MyBackwardInfoflow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="367" column="26" selection-start-line="367" selection-start-column="26" selection-end-line="367" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/tester/Backend.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="71" column="12" lean-forward="true" selection-start-line="71" selection-start-column="12" selection-end-line="71" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/common/UIfinder/EHSigManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/common/outputs/BackendOutput.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/tester/Extractocol.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/SignatureBuilder_Request.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7992">
+          <caret line="506" column="56" selection-start-line="506" selection-start-column="56" selection-end-line="506" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="864">
+          <caret line="87" column="49" selection-start-line="87" selection-start-column="49" selection-end-line="87" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extractocol/src/extractocol/backend/request/semantic/url/UrlBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="73" column="43" selection-start-line="73" selection-start-column="43" selection-end-line="73" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>soot-infoflow-android</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.20324005" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.20324005" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>axml-2.0</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

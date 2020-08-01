@@ -1,0 +1,21 @@
+[submodule "lib/soot"]
+	path = lib/soot
+	url = https://github.com/chaos5958/soot.git
+[submodule "lib/heros"]
+	path = lib/heros
+	url = https://github.com/chaos5958/heros.git
+[submodule "lib/jasmin"]
+	path = lib/jasmin
+	url = https://github.com/chaos5958/jasmin.git
+[submodule "src/soot-infoflow-android"]
+	path = src/soot-infoflow-android
+	url = https://github.com/secure-software-engineering/soot-infoflow-android.git
+[submodule "src/soot-infoflow"]
+	path = src/soot-infoflow
+	url = https://github.com/secure-software-engineering/soot-infoflow.git
+[submodule "src/heros"]
+	path = src/heros
+	url = https://github.com/Sable/heros.git
+[submodule "src/jasmin"]
+	path = src/jasmin
+	url = https://github.com/Sable/jasmin.git

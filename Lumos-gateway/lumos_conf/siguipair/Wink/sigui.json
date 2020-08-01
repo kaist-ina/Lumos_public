@@ -1,0 +1,6 @@
+{
+  "pair":
+  [
+    {"Human_readable_id":"start_siren_button", "UI":["null"],"Sig":["POST https://api.wink.com/sirens/.*"]}
+  ]
+}

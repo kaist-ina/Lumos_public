@@ -1,0 +1,6 @@
+{
+  "pair":
+  [
+    {"Human_readable_id":"get_co2", "UI":["null"],"Sig":["POST .*", "RESPONSEBODY co_status=.* smoke_status=.*"]}
+  ]
+}

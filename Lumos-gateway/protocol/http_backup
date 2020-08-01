@@ -1,0 +1,1330 @@
+from __future__ import (absolute_import, print_function, division)
+
+import sys
+import traceback
+import six
+
+from netlib import tcp
+from netlib.exceptions import HttpException, HttpReadDisconnect, NetlibException
+from netlib.http import Headers, Request, Response
+
+from h2.exceptions import H2Error
+
+from .. import utils
+from ..exceptions import HttpProtocolException, ProtocolException
+from ..models import (
+    HTTPFlow,
+    HTTPRequest,
+    HTTPResponse,
+    make_error_response,
+    make_connect_response,
+    Error,
+    expect_continue_response
+)
+
+from ..models.connections import ClientConnection, ServerConnection
+
+from .base import Layer, Kill
+
+
+# Code by Byungkwon Choi *Start*
+#############################################################################################
+import json
+import pdb
+import zlib
+import socket
+import urlparse
+from netlib.odict import ODict
+from os.path import expanduser
+import subprocess
+from six.moves import urllib
+#from netlib import utils
+
+SIG_PATH = "/home/brad/wish_sigs/"
+
+def enum(*sequential, **named):
+    enums = dict(zip(sequential, range(len(sequential))), **named)
+    reverse = dict((value, key) for key, value in enums.iteritems())
+    enums['reverse_mapping'] = reverse
+    return type('Enum', (), enums)
+
+def MyLog(string):
+    file1 = open("/home/brad/mitmproxy_debug_log", 'a')
+    file1.write(str(string) + "\n")
+    file1.flush()
+    file1.close()
+
+def Print_Request(flow):
+    MyLog("[Request]")
+    MyLog(" - first_line_format: "+str(flow.request.data.first_line_format));
+    MyLog(" - method: "+str(flow.request.data.method));
+    MyLog(" - scheme: "+str(flow.request.data.scheme));
+    MyLog(" - host: "+str(flow.request.data.host));
+    MyLog(" - port: "+str(flow.request.data.port));
+    MyLog(" - path: "+str(flow.request.data.path));
+    MyLog(" - http_version: "+str(flow.request.data.http_version));
+    if flow.request.query:
+        MyLog(" - Query: " + str(flow.request.query))
+    MyLog(" - headers(type:"+str(type(flow.request.data.headers))+"): "+str(flow.request.data.headers));
+    #MyLog(" - content: " + str(flow.request.get_decoded_content()));
+    MyLog(" - content: " + str(flow.request.urlencoded_form));
+
+def ODICT_Matching(odict1, odict2):
+    for t in odict1:
+        key = t[0]
+        value = t[1]
+        result = False
+        for v in odict2[key]:
+            if v == value:
+                result = True
+                break
+        if not result:
+            return False
+
+    return True
+
+POS = enum('URI','HEADER','BODY')
+ORIG = enum('REQUEST','RESPONSE')
+
+class Request_Structure:
+    def __init__(self):
+        self.method = str() # get, post, etc
+        self.scheme = str() # http, https
+        self.URI = list()
+        self.Headers = dict()
+        self.Body = ODict()
+
+    def Set_Method(self, m):
+        self.method = m
+
+    def Set_Scheme(self, s):
+        self.scheme = s
+
+    def Get_URI(self):
+        return "".join(self.URI)
+
+    def Add_URI(self, uri):
+        for item in uri:
+            self.URI.append(item)
+
+    def Add_Headers(self, key, value):
+        self.Headers[key] = value
+
+    def Add_Body(self, key, value):
+        self.Body.add(key, value)
+
+    def Print(self):
+        MyLog("[Request Signature]")
+        MyLog(" - Method : " + self.method)
+        MyLog(" - Scheme : " + self.scheme)
+        MyLog(" - URI    : " + self.Get_URI())
+        MyLog(" - Headers: " + str(self.Headers))
+        MyLog(" - Body   : " + str(self.Body))
+
+class Dependency_Data:
+    def __init__(self):
+        self.parent_idx = int() # parent flow's index
+        self.orig_req_resp = ORIG.REQUEST # parent - position 1 (req/resp)
+        self.orig_pos = POS.HEADER # parent - position 2 (header/body)
+        self.orig_key = list() # parent - key list (or just a key)
+        self.req_pos = POS.HEADER # child - position 1 (uri/header/body)
+        self.req_detail_pos = str() # child - position 2 (key)
+        self.stat = bool() # status (True: already loaded, False: need to load from parent)
+
+    def Set_Parent_Idx(self, idx):
+        self.parent_idx = idx
+
+    def Set_Orig_Req_Resp(self, r):
+        self.orig_req_resp = r
+
+    def Set_Orig_Pos(self, r):
+        self.orig_pos = r
+
+    def Set_Orig_Key(self, l):
+        self.orig_key = l
+
+    def Add_Orig_Key(self, k):
+        self.orig_key.append(k)
+
+    def Set_Req_Pos(self, r):
+        self.req_pos = r
+
+    def Set_Req_Detail_Pos(self, s):
+        self.req_detail_pos = s
+
+    def Set_Status(self, r):
+        self.stat = r
+
+    def Print(self):
+        MyLog("Parent Index: " + str(self.parent_idx))
+        MyLog("Parent Position 1 (Req./Resp.)  : " + str(ORIG.reverse_mapping[self.orig_req_resp]))
+        MyLog("Parent Position 2 (Hdr/Body)    : " + str(POS.reverse_mapping[self.orig_pos]))
+        MyLog("Parent Position 3 (Key list)    : " + str(self.orig_key))
+        MyLog(" Child Position 1 (URI/Hdr/Body): " + str(POS.reverse_mapping[self.req_pos]))
+        MyLog(" Child Position 2 (Key)         : " + str(self.req_detail_pos))
+        MyLog("Status: " + str(self.stat))
+
+class Request_Track_Dependency:
+    def __init__(self):
+        self.cnt = int()
+        self.dp_list = list() # list of class 'Dependency_Data'
+
+    def Set_Cnt(self, i):
+        self.cnt = i
+
+    def Add_DP_List(self, dp):
+        self.dp_list.append(dp)
+
+    def Decrease_Cnt(self):
+        self.cnt = self.cnt - 1
+
+    def Increase_Cnt(self):
+        self.cnt = self.cnt + 1
+
+#Prefetched flow(Resp.)
+prefetched_flow = list()
+
+#Signatures
+Request_Signatures = list()
+Request_Track_DP = list() # list of class 'class Request_Track_Dependency'
+
+#Request_URI_Signatures = list() # maybe not used
+#Request_Header_Signatures = list() # maybe not used
+#Request_Body_Signatures = list() # maybe not used
+
+#Dependency Graph
+Dependency_Graph = list()
+
+# Dependency Graph Evaluation (DGE) *start*
+#------------------------------------------------------------------------------#
+# DGE_flag
+#  - True : If DGE has been done
+#  - False: If DGE has not been done yet
+DGE_flag = False
+
+# Return DGE (Dpendency Graph Evaluation) flag
+def Check_DGE_Flag():
+    global DGE_flag
+    return DGE_flag
+
+# Set DGE flag to True
+def Set_DGE_True():
+    global DGE_flag
+    DGE_flag = True
+
+# Set DGE flag to False
+def Set_DGE_False():
+    global DGE_flag
+    DGE_flag = False
+
+def DGE(flow):
+    return
+
+
+#------------------------------------------------------------------------------#
+# Dependency Graph Evaluation (DGE) *end*
+
+
+
+# Signatures load *start*
+#------------------------------------------------------------------------------#
+def Load_Request_Sig():
+    global Request_Signatures
+    global Request_Track_DP
+    global Dependency_Graph
+    global SIG_PATH
+
+    # 1. Initialization
+    p = subprocess.Popen(["wc", "-l", SIG_PATH + "requests"], stdout=subprocess.PIPE)
+    output, err = p.communicate()
+    line_no = int(output.split()[0])
+
+    Request_Signatures = [Request_Structure() for i in range(line_no)]
+    Request_Track_DP = [Request_Track_Dependency() for i in range(line_no)]
+    Dependency_Graph = [list() for i in range(line_no)]
+
+
+    # 2. Read request signatures
+    f = open(SIG_PATH + "requests", 'r')
+    for i in range(line_no):
+        line = f.readline().strip()
+        sp = str(line).split() # split by space ' '
+        #t = Request_Structure()
+        #t.method = sp[0]
+        #t.URI.append(sp[1])
+        Sig_Parse = urlparse.urlparse(sp[1])
+
+        Request_Signatures[i].Set_Method(sp[0])
+        Request_Signatures[i].Add_URI(sp[1:])
+        Request_Signatures[i].Set_Scheme(Sig_Parse.scheme)
+
+        
+        #MyLog(i)
+        #MyLog(Request_Signatures[0])
+        #MyLog(Request_Signatures[0].method)
+        #MyLog(Request_Signatures[0].URI)
+
+        #MyLog(Request_Signatures[1])
+        #MyLog(Request_Signatures[1].method)
+        #MyLog(Request_Signatures[1].URI)
+
+        #.append(Request_Structure(sp[0], sp[1]))
+        # append an empty component to the list
+        #Request_Track_DP.append(Request_Track_Dependency()) 
+
+        # append an empty list to Dependency_Graph list
+        #Dependency_Graph.append(list())
+        #Request_Signatures[i].Print()
+    
+    f.close()
+
+# This function should be called after calling Load_Request_Sig().
+def Load_Request_Header_Sig():
+    global Request_Signatures
+    global SIG_PATH
+
+    for i in range(0,len(Request_Signatures)):
+        f = open(SIG_PATH + "req_header_" + str(i), 'r')
+        while True:
+            line = f.readline().strip()
+            if not line: break
+            sp = str(line).split(' ', 1) # split by space ' '
+            key = sp[0]
+
+            if len(sp) > 1:
+                value = sp[1]
+                Request_Signatures[i].Add_Headers(key, value)
+            else:
+                Request_Signatures[i].Add_Headers(key, "<None>")
+            
+        f.close()
+
+# This function should be called after calling Load_Request_Sig().
+def Load_Request_Body_Sig():
+    global Request_Signatures
+    global SIG_PATH
+
+    for i in range(0,len(Request_Signatures)):
+        f = open(SIG_PATH + "req_body_" + str(i), 'r')
+        while True:
+            line = f.readline().strip()
+            if not line: break
+            sp = str(line).split(' ', 1) # split by space ' '
+            key = sp[0]
+
+            if len(sp) > 1:
+                value = sp[1]
+                Request_Signatures[i].Add_Body(key, value)
+            else:
+                Request_Signatures[i].Add_Body(key, "<None>")
+            
+        f.close()
+
+def Load_Request_Dependency_Sig():
+    global Request_Signatures
+    global Request_Track_DP
+
+    for i in range(0,len(Request_Signatures)):
+        f = open(SIG_PATH + "req_dependency_" + str(i), 'r')
+        while True:
+            line = f.readline().strip()
+            if not line: break
+            sp = str(line).split()
+
+            new_dp = Dependency_Data()
+
+            new_dp.Set_Parent_Idx(int(sp[0]))
+
+            if str(sp[1]) == "URI":
+                new_dp.Set_Req_Pos(POS.URI)
+            elif str(sp[1]) == "HEADER":
+                new_dp.Set_Req_Pos(POS.HEADER)
+            elif str(sp[1]) == "BODY":
+                new_dp.Set_Req_Pos(POS.BODY)
+
+            new_dp.Set_Req_Detail_Pos(str(sp[2]))
+
+            if str(sp[3]) == "REQUEST":
+                new_dp.Set_Orig_Req_Resp(ORIG.REQUEST)
+            elif str(sp[3]) == "RESPONSE":
+                new_dp.Set_Orig_Req_Resp(ORIG.RESPONSE)
+
+            if str(sp[4]) == "HEADER":
+                new_dp.Set_Orig_Pos(POS.HEADER)
+            if str(sp[4]) == "BODY":
+                new_dp.Set_Orig_Pos(POS.BODY)
+
+            new_dp.Set_Orig_Key(str(sp[5]).split(','))
+            new_dp.Set_Status(False)
+
+            Request_Track_DP[i].Add_DP_List(new_dp)
+            Request_Track_DP[i].Increase_Cnt()
+
+        f.close()
+
+    #Request_Track_DP[3].dp_list[0].Print()
+    return
+
+
+def Load_Dependency_Graph():
+    global Dependency_Graph
+
+    f = open(SIG_PATH + "Dependency_Graph", 'r')
+
+    while True:
+        line = f.readline().strip()
+        if not line: break
+        sp = str(line).split()
+
+        parent = int(sp[0])
+        child = int(sp[1])
+
+        Dependency_Graph[parent].append(child)
+
+    f.close()
+
+    return
+#------------------------------------------------------------------------------#
+# Signatures load *end*
+
+
+
+
+# Request *start*
+#------------------------------------------------------------------------------#
+def Is_Req_Root(request):
+    return False
+
+def Does_Req_Have_Cookie(request):
+    return False
+
+def Construct_Req_Resp_List():
+    return
+
+#------------------------------------------------------------------------------#
+# Request *end*
+
+
+# Response *start*
+#------------------------------------------------------------------------------#
+def URI_Sig_Matching(flow, URI): 
+    URI_Sig = "".join(URI)
+    Sig_Parse = urlparse.urlparse(URI_Sig)
+
+    req_host = flow.request.data.headers["host"]
+    req_path = flow.request.data.path
+
+    #MyLog("[Request]   Host: " + str(req_host))
+    #MyLog("[Signature] Host: " + str(Sig_Parse.netloc))
+    #MyLog("[Request]   Path: " + str(req_path))
+    #MyLog("[Signature] Path: " + str(Sig_Parse.path))
+
+    if str(Sig_Parse.netloc) == str(req_host):
+        if str(Sig_Parse.path) == str(req_path):
+            #MyLog("URI Matching!")
+            return True
+    return False
+    
+# comments: HDR_Sig is a dictionary.
+def Req_Header_Sig_Matching(flow, HDR_Sig): 
+    for HDR_Key in HDR_Sig:
+        if str(flow.request.data.headers).find(HDR_Key) == -1:
+            return False
+    #MyLog("Header Matching!")
+    return True
+
+# comments: Body_Sig is a dictionary.
+def Req_Body_Sig_Matching(flow, Body_Sig): 
+    #Print_Request(flow)
+    for Body_Key in Body_Sig:
+        #if str(flow.request.get_decoded_content()).find(Body_Key[0]) == -1:
+        if str(flow.request.urlencoded_form).find(Body_Key[0]) == -1:
+            return False
+    #MyLog("Body Matching!")
+    return True
+
+def Request_vs_Signature(flow):
+    global Request_Signatures
+    global Request_Track_DP
+
+    for i in range(0, len(Request_Signatures)):
+        #if Request_Track_DP[i].cnt == 0:
+        if flow.request.data.method == Request_Signatures[i].method: 
+            if URI_Sig_Matching(flow, Request_Signatures[i].URI): 
+                if Req_Header_Sig_Matching(flow, Request_Signatures[i].Headers): 
+                    if Req_Body_Sig_Matching(flow, Request_Signatures[i].Body): 
+                        return i
+    return -1
+
+def Req_Query_Matching(query1, query2):
+    if not query1 and not query2:
+        return True
+    elif query1 and not query2:
+        return False
+    elif not query1 and query2:
+        return False
+
+    return ODICT_Matching(query1, query2)
+
+def URI_Matching(flow1, flow2):
+    # method
+    if flow1.request.data.method != flow2.request.data.method:
+        return False
+    #MyLog("Methods are matched!")
+    # scheme
+    if flow1.request.data.scheme != flow2.request.data.scheme:
+        return False
+    #MyLog("Schemes are matched!")
+    # host
+    if flow1.request.data.headers["host"] != flow2.request.data.headers["host"]:
+        #MyLog("[Flow1 Host] : " + str(flow1.request.data.headers["host"]))
+        #MyLog("[Flow2 Host] : " + str(flow2.request.data.headers["host"]))
+        return False
+    #MyLog("Hosts are matched!")
+
+    # path
+    if not flow2.request.query:
+        if flow1.request.data.path != flow2.request.data.path:
+            #MyLog("[Flow1 Path] : " + str(flow1.request.data.path))
+            #MyLog("[Flow2 Path] : " + str(flow2.request.data.path))
+            return False
+    else:
+        parse1 = urlparse.urlparse(flow1.request.data.path)
+        parse2 = urlparse.urlparse(flow2.request.data.path)
+
+        if parse1.path != parse2.path:  
+            #MyLog("[Flow1 Path] : " + str(flow1.request.data.path))
+            #MyLog("[Flow2 Path] : " + str(flow2.request.data.path))
+            return False
+
+    #MyLog("Pathes are matched!")
+
+    if not Req_Query_Matching(flow1.request.query, flow2.request.query): 
+        return False
+        #MyLog("Both of two requests have query!!")
+        #Print_Request(flow1)
+        #Print_Request(flow2)
+            
+    #MyLog("Queries are matched!")
+    #MyLog("URI Matching!")
+    return True
+
+
+def Req_Header_Matching(flow1, flow2):
+    hdr1 = flow1.request.data.headers
+    hdr2 = flow2.request.data.headers
+
+    for k,v in hdr1.fields:
+        if hdr2[k] != v:
+            return False
+
+    #MyLog("Header Matching!")
+    return True
+
+
+def Req_Body_Matching(flow1, flow2):
+    odict1 = flow1.request.urlencoded_form
+    odict2 = flow2.request.urlencoded_form
+
+    if not odict1 and not odict2:
+        return True
+    elif not odict1 and odict2:
+        return False
+    elif odict1 and not odict2:
+        return False
+
+    return ODICT_Matching(odict1, odict2)
+
+def Is_Req_Target(flow):
+    global prefetched_flow
+    #MyLog(" - # of Prefetched flow: " + str(len(prefetched_flow)))
+    for pre_flow in prefetched_flow:
+        #MyLog("[Prefetched flow's Path] : " + str(pre_flow.request.data.path))
+        if URI_Matching(flow, pre_flow):
+            if Req_Header_Matching(flow, pre_flow):
+                if Req_Body_Matching(flow, pre_flow):
+                    flow.response = pre_flow.response
+                    flow.response.timestamp_start = flow.request.timestamp_end
+                    flow.response.timestamp_end = utils.timestamp()
+                    return True
+    return False
+
+
+def Should_Resp_Be_Cached(flow):
+    if Request_vs_Signature(flow) != -1:
+        return True
+    return False
+
+def Keep_Resp(flow):
+    global prefetched_flow
+    prefetched_flow.append(flow)
+
+def Find_Children(flow):
+    global Dependency_Graph
+    idx = Request_vs_Signature(flow)
+    if idx == -1:
+        return list()
+    return Dependency_Graph[idx]
+
+def Is_Resp_Parent(flow):
+    if len(Find_Children(flow)) == 0:
+        return False
+    return True
+
+def Track_JSON(js, key_list, idx, result):
+    r = js.get(key_list[idx])
+    if str(type(r)).find("dict") != -1:
+        Track_JSON(r, key_list, idx + 1, result)
+    elif str(type(r)).find("list") != -1:
+        Track_List(r, key_list, idx + 1, result)
+    else:
+        result.append(r)
+    return result
+
+def Track_List(lst, key_list, idx, result):
+    for l in lst:
+        r = l.get(key_list[idx])
+        if str(type(r)).find("dict") != -1:
+            Track_JSON(r, key_list, idx + 1, result)
+        elif str(type(r)).find("list") != -1:
+            Track_List(r, key_list, idx + 1, result)
+        else:
+            result.append(r)
+    return result
+
+# comments: orig_key is a list.
+# return value is list.
+def Extract_data_from_Resp(orig_pos, orig_key, flow):
+    if orig_pos == POS.HEADER:
+        return str(flow.response.headers.get_all(orig_key[0]))
+    elif orig_pos == POS.BODY:
+        # extract json from Resp. body
+        if str(flow.response.headers.get_all("content-type")).find("json") != -1:
+            if (str(flow.response.headers.get_all("content-encoding")).find("gzip") != -1):
+                r_str = str(zlib.decompress(flow.response.content, 16 + zlib.MAX_WBITS))
+            else:
+                r_str = str(flow.response.content)
+
+            try:
+                js = json.loads(r_str)
+
+            except ValueError:
+                return None
+
+            return Track_JSON(js, orig_key, 0, list())
+
+    return None
+
+def Extract_data_from_Req(orig_pos, orig_key, flow):
+    ret = list()
+    if orig_pos == POS.HEADER:
+        return flow.request.headers.get_all(orig_key[0])
+    elif orig_pos == POS.BODY:
+        key_value_list = str(flow.request.get_decoded_content()).split('&')
+        for k_v in key_value_list:
+            key_value = str(k_v).split('=')
+            if str(key_value[0]) == str(orig_key[0]):
+                ret.append(key_value[1])
+                return ret
+    return None
+        
+
+def Keep_Content_to_Req(req_idx, dp, data):
+    global Request_Signatures
+
+    if dp.req_pos == POS.URI:
+        for i in range(0, len(Request_Signatures[req_idx].URI)):
+            #MyLog("item: " + str(Request_Signatures[req_idx].URI[i]))
+            #MyLog("Position: " + dp.req_detail_pos)
+            if str(Request_Signatures[req_idx].URI[i]).find(dp.req_detail_pos) != -1:
+                Request_Signatures[req_idx].URI[i] = data
+                break
+    elif dp.req_pos == POS.HEADER:
+        Request_Signatures[req_idx].Headers[dp.req_detail_pos] = data
+    elif dp.req_pos == POS.BODY:
+        Request_Signatures[req_idx].Body[dp.req_detail_pos] = [data]
+
+    return
+
+def Extract_Content_And_Prefetch_Response(self, flow):
+    global Request_Track_DP
+
+    # 1. get index of this flow (parent flow)
+    p_idx = Request_vs_Signature(flow) 
+    if p_idx == -1:
+        return
+
+    # 2. get the corresponding list of children incide
+    #c_list = Find_Children(flow)
+    c_list = Dependency_Graph[p_idx]
+
+    for i in c_list:
+        # check if the child has empty components
+        if Request_Track_DP[i].cnt > 0:
+            # get dependency information for the child
+            for dp in Request_Track_DP[i].dp_list:
+                #dp.Print()
+                if dp.parent_idx == p_idx and dp.stat == False:
+                    if dp.orig_req_resp == ORIG.REQUEST:
+                        data = Extract_data_from_Req(dp.orig_pos, dp.orig_key, flow)
+                    else:
+                        data = Extract_data_from_Resp(dp.orig_pos, dp.orig_key, flow)
+
+                    #MyLog(data)
+                    if data != None:
+                        # TODO: You should generate multiple requests for the data list.
+                        # Currently, only the first one in the data list is used for req construction.
+                        # You should construct multiple requests for all items in the data list.
+                        #Request_Signatures[i].Print()                
+                        #MyLog("data (type: " + str(type(data)) + "): " + str(data))
+
+                        Keep_Content_to_Req(i, dp, data[0])
+                        dp.stat = True
+                        Request_Track_DP[i].Decrease_Cnt()
+
+                        if Request_Track_DP[i].cnt == 0:
+                            #MyLog("Yes!!!! It has been done!")
+                            #Request_Signatures[i].Print()                
+                            t_flow = Send_Request_And_Prefetch_Response(self, Request_Signatures[i])
+                            if t_flow != None:
+                                Extract_Content_And_Prefetch_Response(self, t_flow)
+
+    return
+
+def Construct_Body(req_struct):
+    body = ""
+    for i in req_struct.Body:
+        body = body + i + "=" + req_struct.Body[i] + "&"
+    # remove last "&" by using '[:len(body)-1]'
+    return body[:len(body)-1]
+
+def Send_Request_And_Prefetch_Response(self, req_struct):
+    #req_struct.Print()
+    # 1. Construct Request
+    # - construct URI
+    URI = req_struct.Get_URI()
+    #MyLog("URI: " + str(URI))
+    href_parse = urlparse.urlparse(URI)
+    #MyLog("Path: " + str(href_parse.path))
+    #MyLog("Host: " + str(href_parse.netloc))
+
+    # - construct headers
+    hdrs = Headers(req_struct.Headers.items()) 
+    #MyLog("Headers: \n" + str(hdrs))
+    #body = Construct_Body(req_struct)
+    #MyLog("Body: " + str(body))
+
+    req = HTTPRequest(
+                        "relative",
+                         req_struct.method,
+                         req_struct.scheme,
+                         0,
+                         0,
+                         href_parse.path,
+                         "HTTP/1.1",
+                         hdrs,
+                         "",
+                         #body,
+                         0,
+                         0
+                     )
+
+    # - construct Body
+    #MyLog("req type: " + str(type(req)))
+    #content_odict = ODict()
+    #for k,v in req_struct.Body.iteritems():
+    #    content_odict.add(k,v)
+    #MyLog("content_odict: "+str(content_odict))
+    #req.urlencoded_form(content_odict)
+    s = [tuple(i) for i in req_struct.Body.lst]
+    #req.content = utils.urlencode(content_odict.lst)
+    req.content = urllib.parse.urlencode(s, False)
+
+    #MyLog("Test 1")
+    #MyLog("Scheme: " + str(req_struct.scheme))
+
+    if req_struct.scheme == "http":
+        port = int(80)
+    elif req_struct.scheme == "https":
+        port = int(443)
+    else:
+        return None
+
+    #MyLog("Port: "+ str(port))
+    addr = socket.gethostbyname(href_parse.netloc),port
+    server_conn = ServerConnection(addr)
+
+    #MyLog("Addr: " + str(addr))
+    flow = HTTPFlow(None, server_conn, HttpLayer)
+    flow.request = req
+    flow.request.query_string = href_parse.query
+    #MyLog("Query: " + str(flow.request.query_string))
+
+
+    if flow.request.query_string:
+        query = flow.request.query_string
+        query_dict = dict(query.split('=') for query in query.split('&'))
+        query_odict = ODict()
+        for k,v in query_dict.iteritems():
+            #MyLog("k: " + str(k) + ", v: " + str(v))
+            query_odict.add(k,v)
+        flow.request.set_query(query_odict)
+
+    #Print_Request(flow)
+    # 2. Send Request for prefetching
+    flow = get_response_from_server_prefetch(self, flow, req_struct.scheme)
+
+    # 3. Append the flow
+    Keep_Resp(flow)
+
+    return flow
+
+def get_response_from_server_prefetch(self, prefetch_flow, scheme):
+    # Make sure that the incoming request matches our expectations
+    #MyLog("(Before1) Scheme: " + str(prefetch_flow.request.scheme))
+    self.validate_request(prefetch_flow.request)
+
+    #MyLog("(Before2) Scheme: " + str(prefetch_flow.request.scheme))
+    self.process_request_hook(prefetch_flow)
+
+    host_header = prefetch_flow.request.headers.get("host", None)
+    #MyLog("Host: " + prefetch_flow.server_conn.address.host)
+    #MyLog("Port: " + str(prefetch_flow.server_conn.address.port))
+    #MyLog("(After) Scheme: " + str(prefetch_flow.request.scheme))
+    prefetch_flow.request.host = prefetch_flow.server_conn.address.host
+    prefetch_flow.request.port = prefetch_flow.server_conn.address.port
+    prefetch_flow.request.scheme = scheme
+    if host_header:
+        prefetch_flow.request.headers["host"] = host_header
+
+    if not prefetch_flow.response:
+        self.establish_server_connection(prefetch_flow)
+        self.get_response_from_server(prefetch_flow)
+    else:
+        # response was set by an inline script.
+        # we now need to emulate the responseheaders hook.
+        prefetch_flow = self.channel.ask("responseheaders", prefetch_flow)
+        if prefetch_flow == Kill:
+            raise Kill()
+
+    self.log("response", "debug", [repr(prefetch_flow.response)])
+    prefetch_flow = self.channel.ask("response", prefetch_flow)
+    if prefetch_flow == Kill:
+        raise Kill()
+
+    if self.check_close_connection(prefetch_flow):
+        return None
+
+    return prefetch_flow
+#------------------------------------------------------------------------------#
+# Response *end*
+
+#############################################################################################
+# Code by Byungkwon Choi *End*
+
+
+
+
+
+
+class _HttpTransmissionLayer(Layer):
+
+    def read_request(self):
+        raise NotImplementedError()
+
+    def read_request_body(self, request):
+        raise NotImplementedError()
+
+    def send_request(self, request):
+        raise NotImplementedError()
+
+    def read_response(self, request):
+        response = self.read_response_headers()
+        response.data.content = b"".join(
+            self.read_response_body(request, response)
+        )
+        return response
+
+    def read_response_headers(self):
+        raise NotImplementedError()
+
+    def read_response_body(self, request, response):
+        raise NotImplementedError()
+        yield "this is a generator"  # pragma: no cover
+
+    def send_response(self, response):
+        if response.content is None:
+            raise HttpException("Cannot assemble flow with missing content")
+        self.send_response_headers(response)
+        self.send_response_body(response, [response.content])
+
+    def send_response_headers(self, response):
+        raise NotImplementedError()
+
+    def send_response_body(self, response, chunks):
+        raise NotImplementedError()
+
+    def check_close_connection(self, flow):
+        raise NotImplementedError()
+
+
+class ConnectServerConnection(object):
+
+    """
+    "Fake" ServerConnection to represent state after a CONNECT request to an upstream proxy.
+    """
+
+    def __init__(self, address, ctx):
+        self.address = tcp.Address.wrap(address)
+        self._ctx = ctx
+
+    @property
+    def via(self):
+        return self._ctx.server_conn
+
+    def __getattr__(self, item):
+        return getattr(self.via, item)
+
+    def __bool__(self):
+        return bool(self.via)
+
+    if six.PY2:
+        __nonzero__ = __bool__
+
+
+class UpstreamConnectLayer(Layer):
+
+    def __init__(self, ctx, connect_request):
+        super(UpstreamConnectLayer, self).__init__(ctx)
+        self.connect_request = connect_request
+        self.server_conn = ConnectServerConnection(
+            (connect_request.host, connect_request.port),
+            self.ctx
+        )
+
+    def __call__(self):
+        layer = self.ctx.next_layer(self)
+        layer()
+
+    def _send_connect_request(self):
+        self.send_request(self.connect_request)
+        resp = self.read_response(self.connect_request)
+        if resp.status_code != 200:
+            raise ProtocolException("Reconnect: Upstream server refuses CONNECT request")
+
+    def connect(self):
+        if not self.server_conn:
+            self.ctx.connect()
+            self._send_connect_request()
+        else:
+            pass  # swallow the message
+
+    def change_upstream_proxy_server(self, address):
+        if address != self.server_conn.via.address:
+            self.ctx.set_server(address)
+
+    def set_server(self, address, server_tls=None, sni=None):
+        if self.ctx.server_conn:
+            self.ctx.disconnect()
+        address = tcp.Address.wrap(address)
+        self.connect_request.host = address.host
+        self.connect_request.port = address.port
+        self.server_conn.address = address
+
+        if server_tls:
+            raise ProtocolException(
+                "Cannot upgrade to TLS, no TLS layer on the protocol stack."
+            )
+
+
+class HttpLayer(Layer):
+
+    def __init__(self, ctx, mode):
+        super(HttpLayer, self).__init__(ctx)
+        self.mode = mode
+
+        self.__initial_server_conn = None
+        "Contains the original destination in transparent mode, which needs to be restored"
+        "if an inline script modified the target server for a single http request"
+        # We cannot rely on server_conn.tls_established,
+        # see https://github.com/mitmproxy/mitmproxy/issues/925
+        self.__initial_server_tls = None
+
+    def __call__(self):
+        if self.mode == "transparent":
+            self.__initial_server_tls = self._server_tls
+            self.__initial_server_conn = self.server_conn
+        while True:
+            try:
+                request = self.get_request_from_client()
+                self.log("request", "debug", [repr(request)])
+
+                # Handle Proxy Authentication
+                # Proxy Authentication conceptually does not work in transparent mode.
+                # We catch this misconfiguration on startup. Here, we sort out requests
+                # after a successful CONNECT request (which do not need to be validated anymore)
+                if self.mode != "transparent" and not self.authenticate(request):
+                    return
+
+                # Make sure that the incoming request matches our expectations
+                self.validate_request(request)
+
+                # Regular Proxy Mode: Handle CONNECT
+                if self.mode == "regular" and request.first_line_format == "authority":
+                    self.handle_regular_mode_connect(request)
+                    return
+
+            except HttpReadDisconnect:
+                # don't throw an error for disconnects that happen before/between requests.
+                return
+            except NetlibException as e:
+                self.send_error_response(400, repr(e))
+                six.reraise(ProtocolException, ProtocolException(
+                    "Error in HTTP connection: %s" % repr(e)), sys.exc_info()[2])
+
+            try:
+                flow = HTTPFlow(self.client_conn, self.server_conn, live=self)
+                flow.request = request
+                # set upstream auth
+                if self.mode == "upstream" and self.config.upstream_auth is not None:
+                    self.data.headers["Proxy-Authorization"] = self.config.upstream_auth
+
+
+                self.process_request_hook(flow)
+
+
+                # Code by Byungkwon *Start*
+                # Code for requests
+                #############################################################################
+                is_resp_prefetched = False 
+
+                #Print_Request(flow)
+                #MyLog("\n")
+                #MyLog(Dependency_Graph[1])
+                #MyLog(Request_Track_DP[0].dp_list[0].parent_idx)
+                #MyLog(Request_Track_DP[0].dp_list[0].orig_req_resp)
+                #MyLog(Request_Track_DP[0].dp_list[0].orig_pos)
+                #MyLog(Request_Track_DP[0].dp_list[0].orig_key)
+                #MyLog(Request_Track_DP[0].dp_list[0].req_pos)
+                #MyLog(Request_Track_DP[0].dp_list[0].req_detail_pos)
+                #MyLog(Request_Track_DP[0].dp_list[0].stat)
+
+                #MyLog(flow.request.data.headers["host"])
+                #MyLog(Request_Signatures[0].method)
+                #MyLog(Request_Signatures[0].scheme)
+                #MyLog(Request_Signatures[0].URI)
+                #MyLog(Request_Signatures[0].Headers)
+                #MyLog(Request_Signatures[0].Body)
+
+                #MyLog("\n")
+                #MyLog(Request_Signatures[1].method)
+                #MyLog(Request_Signatures[1].scheme)
+                #MyLog(Request_Signatures[1].URI)
+                #MyLog(Request_Signatures[1].Headers)
+                #MyLog(Request_Signatures[1].Body)
+                #MyLog(Request_Signatures)
+
+                # 1. Dependency graph evaluation (DGE)
+                # This work is for 
+#                if Check_DGE_Flag():
+#                    if Is_Req_Root(flow.request):
+#                        if Does_Req_Have_Cookie(flow.request):
+#                            ret = DGE(flow)
+#
+#                            if ret == True:
+#                                Set_DGE_True()
+#                                Construct_Req_Resp_List()
+
+                # 2. Check whether the corresponding resp has been prefetched
+                if Is_Req_Target(flow):
+                    #MyLog("The corresponding response has been prefetched.")
+                    #MyLog("\n")
+                    is_resp_prefetched = True
+
+                    # no further manipulation of self.server_conn beyond this point
+                    # we can safely set it as the final attribute value here.
+                    flow.server_conn = self.server_conn
+
+                                
+
+                # check whether the corresponding response has been prefetched
+                if not is_resp_prefetched:
+                #############################################################################
+                # Code by Byungkwon *End*
+
+                # Below part is for: transfer the request to server and get response from the server
+                    if not flow.response:
+                        self.establish_server_connection(flow)
+                        self.get_response_from_server(flow)
+                    else:
+                        # response was set by an inline script.
+                        # we now need to emulate the responseheaders hook.
+                        flow = self.channel.ask("responseheaders", flow)
+                        if flow == Kill:
+                            raise Kill()
+
+
+                #print_request(flow)
+
+                self.log("response", "debug", [repr(flow.response)])
+                flow = self.channel.ask("response", flow)
+                if flow == Kill:
+                    raise Kill()
+                self.send_response_to_client(flow)
+
+                if self.check_close_connection(flow):
+                    return
+
+
+                # Code by Byungkwon *Start*
+                # Code for response
+                #############################################################################
+                if not is_resp_prefetched:
+                    if Should_Resp_Be_Cached(flow):
+                        #Keep_Resp(flow)
+                        #MyLog("Did it!!")
+                        Extract_Content_And_Prefetch_Response(self, flow)
+
+
+                    #t_flow = flow
+                    #while True:
+                    #    if Is_Resp_Parent(t_flow):
+                    #        t_flow = Extract_And_Keep_Content(t_flow)
+                            #if Is_There_Finished_Request(t_flow):
+                            #    Send_Request_And_Prefetch_Response(t_flow)
+                    #    else:
+                    #        break
+                #############################################################################
+                # Code by Byungkwon *End*
+
+
+                ## Comment by Byungkwon ##
+                # We can ignore following parts (Two IF statements).
+
+                # Handle 101 Switching Protocols
+                # It may be useful to pass additional args (such as the upgrade header)
+                # to next_layer in the future
+                if flow.response.status_code == 101:
+                    layer = self.ctx.next_layer(self)
+                    layer()
+                    return
+
+                # Upstream Proxy Mode: Handle CONNECT
+                if flow.request.first_line_format == "authority" and flow.response.status_code == 200:
+                    self.handle_upstream_mode_connect(flow.request.copy())
+                    return
+
+            except (ProtocolException, NetlibException) as e:
+                self.send_error_response(502, repr(e))
+
+                if not flow.response:
+                    flow.error = Error(str(e))
+                    self.channel.ask("error", flow)
+                    self.log(traceback.format_exc(), "debug")
+                    return
+                else:
+                    six.reraise(ProtocolException, ProtocolException(
+                        "Error in HTTP connection: %s" % repr(e)), sys.exc_info()[2])
+            finally:
+                if flow:
+                    flow.live = False
+
+    def get_request_from_client(self):
+        request = self.read_request()
+        if request.headers.get("expect", "").lower() == "100-continue":
+            # TODO: We may have to use send_response_headers for HTTP2 here.
+            self.send_response(expect_continue_response)
+            request.headers.pop("expect")
+            request.body = b"".join(self.read_request_body(request))
+        return request
+
+    def send_error_response(self, code, message):
+        try:
+            response = make_error_response(code, message)
+            self.send_response(response)
+        except (NetlibException, H2Error):
+            self.log(traceback.format_exc(), "debug")
+
+    def change_upstream_proxy_server(self, address):
+        # Make set_upstream_proxy_server always available,
+        # even if there's no UpstreamConnectLayer
+        if address != self.server_conn.address:
+            return self.set_server(address)
+
+    def handle_regular_mode_connect(self, request):
+        self.set_server((request.host, request.port))
+        self.send_response(make_connect_response(request.data.http_version))
+        layer = self.ctx.next_layer(self)
+        layer()
+
+    def handle_upstream_mode_connect(self, connect_request):
+        layer = UpstreamConnectLayer(self, connect_request)
+        layer()
+
+    def send_response_to_client(self, flow):
+        if not flow.response.stream:
+            # no streaming:
+            # we already received the full response from the server and can
+            # send it to the client straight away.
+            self.send_response(flow.response)
+        else:
+            # streaming:
+            # First send the headers and then transfer the response incrementally
+            self.send_response_headers(flow.response)
+            chunks = self.read_response_body(
+                flow.request,
+                flow.response
+            )
+            if callable(flow.response.stream):
+                chunks = flow.response.stream(chunks)
+            self.send_response_body(flow.response, chunks)
+            flow.response.timestamp_end = utils.timestamp()
+
+            #my_log("[A streamed chunk is sent.] Time (s): "+\
+            #        str(flow.response.timestamp_end - flow.response.timestamp_start))
+            #my_log("  chunk: "+str(dir(chunks)))
+            #my_log("  headers: "+str(flow.response.headers))
+            #my_log("  body: "+str(flow.response.body)+"\n")
+
+    def get_response_from_server(self, flow):
+        def get_response():
+            self.send_request(flow.request)
+            flow.response = self.read_response_headers()
+
+        try:
+            get_response()
+        except NetlibException as v:
+            self.log(
+                "server communication error: %s" % repr(v),
+                level="debug"
+            )
+
+            #f = open("/home/brad/mitm_error", 'a')
+            #f.write("error: " + repr(v))
+            #f.write("\n")
+            #f.close()
+
+            # In any case, we try to reconnect at least once. This is
+            # necessary because it might be possible that we already
+            # initiated an upstream connection after clientconnect that
+            # has already been expired, e.g consider the following event
+            # log:
+            # > clientconnect (transparent mode destination known)
+            # > serverconnect (required for client tls handshake)
+            # > read n% of large request
+            # > server detects timeout, disconnects
+            # > read (100-n)% of large request
+            # > send large request upstream
+            self.disconnect()
+            self.connect()
+            get_response()
+
+        # call the appropriate script hook - this is an opportunity for an
+        # inline script to set flow.stream = True
+        flow = self.channel.ask("responseheaders", flow)
+        if flow == Kill:
+            raise Kill()
+
+        if flow.response.stream:
+            flow.response.data.content = None
+        else:
+            flow.response.data.content = b"".join(self.read_response_body(
+                flow.request,
+                flow.response
+            ))
+        flow.response.timestamp_end = utils.timestamp()
+
+        # no further manipulation of self.server_conn beyond this point
+        # we can safely set it as the final attribute value here.
+        flow.server_conn = self.server_conn
+
+    def process_request_hook(self, flow):
+        # Determine .scheme, .host and .port attributes for inline scripts.
+        # For absolute-form requests, they are directly given in the request.
+        # For authority-form requests, we only need to determine the request scheme.
+        # For relative-form requests, we need to determine host and port as
+        # well.
+        if self.mode == "regular":
+            pass  # only absolute-form at this point, nothing to do here.
+        elif self.mode == "upstream":
+            if flow.request.first_line_format == "authority":
+                flow.request.scheme = "http"  # pseudo value
+        else:
+            # Setting request.host also updates the host header, which we want to preserve
+            host_header = flow.request.headers.get("host", None)
+            flow.request.host = self.__initial_server_conn.address.host
+            flow.request.port = self.__initial_server_conn.address.port
+            if host_header:
+                flow.request.headers["host"] = host_header
+            flow.request.scheme = "https" if self.__initial_server_tls else "http"
+
+        request_reply = self.channel.ask("request", flow)
+        if request_reply == Kill:
+            raise Kill()
+        if isinstance(request_reply, HTTPResponse):
+            flow.response = request_reply
+            return
+
+    def establish_server_connection(self, flow):
+        address = tcp.Address((flow.request.host, flow.request.port))
+        tls = (flow.request.scheme == "https")
+
+        if self.mode == "regular" or self.mode == "transparent":
+            # If there's an existing connection that doesn't match our expectations, kill it.
+            if address != self.server_conn.address or tls != self.server_conn.tls_established:
+                self.set_server(address, tls, address.host)
+            # Establish connection is neccessary.
+            if not self.server_conn:
+                self.connect()
+        else:
+            if not self.server_conn:
+                self.connect()
+            if tls:
+                raise HttpProtocolException("Cannot change scheme in upstream proxy mode.")
+            """
+            # This is a very ugly (untested) workaround to solve a very ugly problem.
+            if self.server_conn and self.server_conn.tls_established and not ssl:
+                self.disconnect()
+                self.connect()
+            elif ssl and not hasattr(self, "connected_to") or self.connected_to != address:
+                if self.server_conn.tls_established:
+                    self.disconnect()
+                    self.connect()
+
+                self.send_request(make_connect_request(address))
+                tls_layer = TlsLayer(self, False, True)
+                tls_layer._establish_tls_with_server()
+            """
+
+    def validate_request(self, request):
+        if request.first_line_format == "absolute" and request.scheme != "http":
+            raise HttpException("Invalid request scheme: %s" % request.scheme)
+
+        expected_request_forms = {
+            "regular": ("authority", "absolute",),
+            "upstream": ("authority", "absolute"),
+            "transparent": ("relative",)
+        }
+
+        allowed_request_forms = expected_request_forms[self.mode]
+        if request.first_line_format not in allowed_request_forms:
+            err_message = "Invalid HTTP request form (expected: %s, got: %s)" % (
+                " or ".join(allowed_request_forms), request.first_line_format
+            )
+            raise HttpException(err_message)
+
+        if self.mode == "regular" and request.first_line_format == "absolute":
+            request.first_line_format = "relative"
+
+    def authenticate(self, request):
+        if self.config.authenticator:
+            if self.config.authenticator.authenticate(request.headers):
+                self.config.authenticator.clean(request.headers)
+            else:
+                self.send_response(make_error_response(
+                    407,
+                    "Proxy Authentication Required",
+                    Headers(**self.config.authenticator.auth_challenge_headers())
+                ))
+                return False
+        return True

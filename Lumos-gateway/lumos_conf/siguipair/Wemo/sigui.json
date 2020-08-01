@@ -1,0 +1,6 @@
+{
+  "pair":
+  [
+    {"Human_readable_id":"wemo_plugon", "UI":["null"],"Sig":["POST http://.*/upnp/control/basicevent1", "BODY BinaryState=.*"]}
+  ]
+}

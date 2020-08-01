@@ -1,0 +1,6 @@
+{
+  "pair":
+  [
+    {"Human_readable_id":"video_stream_control_overate_lock", "UI":["0x7f09056B","0x7f090563"],"Sig":["POST https://api-production.august.com/remoteoperate/.*/.*"]}
+  ]
+}

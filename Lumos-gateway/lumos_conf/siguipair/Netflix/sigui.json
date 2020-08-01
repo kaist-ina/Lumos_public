@@ -1,0 +1,6 @@
+{
+  "pair":
+  [
+    {"Human_readable_id":"mdx_dialog_list_view", "UI":["0x7F110251"],"Sig":["POST https://customerevents.netflix.com/.*", "BODY app_version=.* EventTime=.* device_cat=.* EventName=.* eventType=.*"]}
+  ]
+}
